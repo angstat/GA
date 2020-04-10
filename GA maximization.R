@@ -1,5 +1,5 @@
-packages.install("GA")
-packages.install("ggplot2")
+install.packages("GA")
+install.packages("ggplot2")
 
 
 library(GA)

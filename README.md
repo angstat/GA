@@ -2,6 +2,6 @@
 #
 need package "GA" before run
 #
-packages.install("GA")
+install.packages("GA")
 #
 library(GA)

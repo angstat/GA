@@ -1,3 +1,10 @@
+packages.install("GA")
+packages.install("ggplot2")
+
+
+library(GA)
+library(ggplot2)
+
 x=cars$speed
 y=cars$dist
 f=function(k) -sum((k[1]*x+k[2]-y)^2)

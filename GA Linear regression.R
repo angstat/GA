@@ -5,8 +5,7 @@ if(!require(GA))
 
 require(stats4)
 
-wd='D:/'
-setwd(wd)
+setwd('D:/')
 
 x<-cars$speed
 y<-cars$dist
@@ -20,7 +19,7 @@ k.mle<-coef(mle(L,start = list(beta0=1,beta1=0,sigma=1)))
 k.mle<-c(k.mle[1],k.mle[2])
 
 f<-function(k) -sum((k[1]+k[2]*x-y)^2)
-maxiter <- 30
+maxiter <- 100
 k.ga<-matrix(NA,maxiter,2)
 #coef gained by GA, iter num is 30
 monitor <- function(obj) 
@@ -40,11 +39,18 @@ GA.result<-ga("real-valued",f,
           upper = c(40,100),
           maxiter = maxiter,
           monitor = monitor)
+
+png(paste("fig_LR",0,".png",sep=""))
 plot(x,y)
 curve(k.mle[1]+k.mle[2]*x,from = 0,to=30,col="black",add = TRUE)
+dev.off()
 plotcol<-rep(rainbow(5),maxiter/5)# integer division
-for(i in 1:30){ 
-  #par(new=TRUE)
-  curve(k.ga[i,1]+k.ga[i,2]*x,from = 0,to=30,col=plotcol[i],add = TRUE)
-}
+for(i in 1:maxiter){ 
+  png(paste("fig_LR",i,".png",sep=""))
+  plot(x,y)
+  curve(k.mle[1]+k.mle[2]*x,from = 0,to=30,col="black",add = TRUE)
+  for(j in 1:i)
+    curve(k.ga[j,1]+k.ga[j,2]*x,from = 0,to=30,col=plotcol[j],add = TRUE)
+  dev.off()
+  }
 #This plotting procedure is not finished 

@@ -39,3 +39,4 @@ for(i in 1:30){
   par(new=TRUE)
   plot(function(x){k.ga[i,1]+k.ga[i,2]*x})
 }
+#This plotting procedure is not finished 

@@ -20,7 +20,8 @@ k.mle<-coef(mle(L,start = list(beta0=1,beta1=0,sigma=1)))
 k.mle<-c(k.mle[1],k.mle[2])
 
 f<-function(k) -sum((k[1]+k[2]*x-y)^2)
-k.ga<-matrix(NA,30,2)
+maxiter <- 30
+k.ga<-matrix(NA,maxiter,2)
 #coef gained by GA, iter num is 30
 monitor <- function(obj) 
 { 
@@ -34,14 +35,16 @@ monitor <- function(obj)
   }
   k.ga[obj@iter,]<<-solution
 }
-Result=ga("real-valued",f,
-          lower=c(0,-40),
-          upper = c(100,40),
-          maxiter = 30,
+GA.result<-ga("real-valued",f,
+          lower=c(-40,0),
+          upper = c(40,100),
+          maxiter = maxiter,
           monitor = monitor)
 plot(x,y)
+curve(k.mle[1]+k.mle[2]*x,from = 0,to=30,col="black",add = TRUE)
+plotcol<-rep(rainbow(5),maxiter/5)# integer division
 for(i in 1:30){ 
   #par(new=TRUE)
-  curve(k.ga[i,1]+k.ga[i,2]*x,from = 0,to=30,add = TRUE)
+  curve(k.ga[i,1]+k.ga[i,2]*x,from = 0,to=30,col=plotcol[i],add = TRUE)
 }
 #This plotting procedure is not finished 

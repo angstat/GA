@@ -3,6 +3,8 @@ if(!require(GA))
   require(GA)
   }
 
+require(stats4)
+
 x<-cars$speed
 y<-cars$dist
 n<-length(x)

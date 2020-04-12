@@ -1,9 +1,7 @@
-install.packages("GA")
-install.packages("ggplot2")
-
-
-library(GA)
-library(ggplot2)
+if(!require(GA))
+{install.packages("GA")
+  require(GA)
+}
 
 f <- function(x)  (x+1)*(x-7)*(x-30)*(x-57)*(x-64)*(x-90)*(x-122)*(x-130)*10^(-10)+400
 curve(f, from = 0, to = 126, n = 1000)

@@ -5,6 +5,9 @@ if(!require(GA))
 
 require(stats4)
 
+wd='D:/'
+setwd(wd)
+
 x<-cars$speed
 y<-cars$dist
 n<-length(x)
@@ -38,7 +41,7 @@ Result=ga("real-valued",f,
           monitor = monitor)
 plot(x,y)
 for(i in 1:30){ 
-  par(new=TRUE)
-  plot(function(x){k.ga[i,1]+k.ga[i,2]*x})
+  #par(new=TRUE)
+  curve(k.ga[i,1]+k.ga[i,2]*x,from = 0,to=30,add = TRUE)
 }
 #This plotting procedure is not finished 

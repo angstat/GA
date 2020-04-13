@@ -40,6 +40,7 @@ GA.result<-ga("real-valued",f,
           maxiter = maxiter,
           monitor = monitor)
 
+##plotting
 png(paste("fig_LR",0,".png",sep=""))
 plot(x,y)
 curve(k.mle[1]+k.mle[2]*x,from = 0,to=30,col="black",add = TRUE)
@@ -53,4 +54,3 @@ for(i in 1:maxiter){
     curve(k.ga[j,1]+k.ga[j,2]*x,from = 0,to=30,col=plotcol[j],add = TRUE)
   dev.off()
   }
-#This plotting procedure is not finished 

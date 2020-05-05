@@ -1,16 +1,13 @@
 
 Name of Quantlet: GA_Quantlet
 
-Published in: 'angstat/GA'
+Published in: METIS
 
 Description: 'R codes used for metis talk on GA'
 
-Keywords: 'genetic algorithm'
-
-See also: ''
+Keywords: genetic algorithm
 
 Author: ALC
 
 Submitted: 20200409 by ALC
 
-Datafile: 

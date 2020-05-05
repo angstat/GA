@@ -18,6 +18,9 @@ L<-function(beta0,beta1,sigma) -sum(dnorm(y,beta0+beta1*x,sigma,log = TRUE))
 k.mle<-coef(mle(L,start = list(beta0=1,beta1=0,sigma=1)))
 k.mle<-c(k.mle[1],k.mle[2])
 
+x.ols<-cbind(1,x)
+k.ols<-solve(t(x.ols)%*%x.ols,t(x.ols))%*%y
+
 f<-function(k) -sum((k[1]+k[2]*x-y)^2)
 maxiter <- 100
 k.ga<-matrix(NA,maxiter,2)
@@ -49,7 +52,7 @@ plotcol<-rep(rainbow(5),maxiter/5)# integer division
 for(i in 1:maxiter){ 
   png(paste("fig_LR",i,".png",sep=""))
   plot(x,y)
-  curve(k.mle[1]+k.mle[2]*x,from = 0,to=30,col="black",add = TRUE)
+  curve(k.ols[1]+k.ols[2]*x,from = 0,to=30,col="black",add = TRUE)
   for(j in 1:i)
     curve(k.ga[j,1]+k.ga[j,2]*x,from = 0,to=30,col=plotcol[j],add = TRUE)
   dev.off()
